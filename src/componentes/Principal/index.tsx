@@ -1,17 +1,17 @@
 import Navbar from 'componentes/Navbar';
 import Rodape from 'componentes/Rodape';
 import React from 'react';
-// import style from './Principal.module.scss';
+import style from './Principal.module.scss';
 
 const Principal: React.FC = () => {
     return (
-        <>
-        <Navbar />
-        <main>
-            <p>Contéudo</p>
-        </main>
-        <Rodape />
-       </> 
+        <article className={style.PrincipalStyle}>
+            <Navbar />
+            <main>
+                <p>Contéudo</p>
+            </main>
+            <Rodape />
+        </article> 
     );
 }
 
