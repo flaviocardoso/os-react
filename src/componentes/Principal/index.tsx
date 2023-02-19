@@ -8,7 +8,10 @@ const Principal: React.FC = () => {
         <article className={style.PrincipalStyle}>
             <Navbar />
             <main>
-                <p>Contéudo</p>
+                <article>
+                    <header>DASHBOARD</header>
+                    
+                </article>
             </main>
             <Rodape />
         </article> 

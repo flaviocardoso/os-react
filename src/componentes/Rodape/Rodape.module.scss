@@ -1,0 +1,9 @@
+@import 'variaveis';
+
+.RodapeStyle {
+    display: flex;
+    justify-content: center;
+    background-color: $rodape-cor-de-fundo;
+    font-weight: bolder;
+    color: $rodape-cor;
+}

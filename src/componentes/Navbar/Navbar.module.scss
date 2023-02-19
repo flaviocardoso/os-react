@@ -1,4 +1,9 @@
+@import 'variaveis';
+
 .Navbar {
+    background-color: $navbar-cor-de-fundo;
+    color: $navbar-cor;
+    font-weight: bold;
     nav {
         display: flex;
         justify-content: space-between;
