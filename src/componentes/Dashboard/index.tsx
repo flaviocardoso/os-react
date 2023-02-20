@@ -1,16 +1,15 @@
 import Navbar from 'componentes/Navbar';
-import Rodape from 'componentes/Rodape';
+import Rodape from 'componentes/Footer';
 import React from 'react';
-import style from './Principal.module.scss';
+import style from './Dashboard.module.scss';
 
 const Principal: React.FC = () => {
     return (
-        <article className={style.PrincipalStyle}>
+        <article className={style.DashboardStyle}>
             <Navbar />
             <main>
                 <article>
-                    <header>DASHBOARD</header>
-                    
+                    <header>DASHBOARD</header>    
                 </article>
             </main>
             <Rodape />

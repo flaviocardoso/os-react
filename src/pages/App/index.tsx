@@ -1,9 +1,9 @@
 import React from 'react';
-import Principal from 'componentes/Principal';
+import Dashboard from 'componentes/Dashboard';
 
 const App: React.FC = () => {
   return (
-      <Principal />
+      <Dashboard />
   );
 }
 

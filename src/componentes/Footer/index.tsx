@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './Rodape.module.scss';
+import style from './Footer.module.scss';
 
 const Rodape: React.FC = () => {
     function dataAcima() {
@@ -10,9 +10,9 @@ const Rodape: React.FC = () => {
     }
 
     return (
-    <footer className={style.RodapeStyle}>
+    <footer className={style.FooterStyle}>
         <div id="direitosreservados">
-            <p> &#169; FLAVIO CARDOSO / 2013 { dataAcima() }</p>
+            <p> &#169; FLAVIO CARDOSO / 2023 { dataAcima() }</p>
         </div>
     </footer>
     );
