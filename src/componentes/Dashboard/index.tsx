@@ -3,7 +3,7 @@ import Rodape from 'componentes/Footer';
 import React from 'react';
 import style from './Dashboard.module.scss';
 
-const Principal: React.FC = () => {
+const Dashboard: React.FC = () => {
     return (
         <article className={style.DashboardStyle}>
             <Navbar />
@@ -17,4 +17,4 @@ const Principal: React.FC = () => {
     );
 }
 
-export default Principal;
+export default Dashboard;

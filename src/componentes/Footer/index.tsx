@@ -12,7 +12,7 @@ const Rodape: React.FC = () => {
     return (
     <footer className={style.FooterStyle}>
         <div id="direitosreservados">
-            <p> &#169; FLAVIO CARDOSO / 2023 { dataAcima() }</p>
+            <p> &#169;flaviocardoso 2023{ dataAcima() }</p>
         </div>
     </footer>
     );

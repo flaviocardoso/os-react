@@ -1,0 +1,17 @@
+@import 'variaveis';
+
+.ButtonStyle {
+    align-self: center;
+    background-color: $navbar-cor-de-fundo;
+    border-radius: 10px;
+    box-shadow: 2px 3px 3px #0000009f;
+    color: #272626;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 5px;
+    width: 80px;
+    &:active {
+        background-color: #7ca6b7;
+        box-shadow: 2px 2px 4px #0000009f inset;
+    }
+}

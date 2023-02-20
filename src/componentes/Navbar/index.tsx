@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from 'componentes/Button';
 import style from './Navbar.module.scss';
 
 const Navbar: React.FC = () => {
@@ -6,15 +7,16 @@ const Navbar: React.FC = () => {
         <header className={style.Navbar}>
             <nav>
                 <ul role="navigation" id="globalnav">
-                    <li>item1</li>
-                    <li>item2</li>
-                    <li>item3</li>
-                    <li>item4</li>
-                    <li>item5</li>
+                    <li>
+                        <Button type='button' style={style.ButtonNavLogout}>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </Button>
+                    </li>
+                    <li>LOGO</li>
                 </ul>
-                <div id="globalpaineil">
-                    sair
-                </div>
+                <Button type='button' style={style.ButtonNavLogout}>SAIR</Button>
             </nav>   
         </header> 
     );
