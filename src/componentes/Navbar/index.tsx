@@ -2,13 +2,17 @@ import React from 'react';
 import Button from 'componentes/Button';
 import style from './Navbar.module.scss';
 
-const Navbar: React.FC = () => {
+interface Props {
+    onClick?: (() => void) | ((event: any) => void)
+}
+
+const Navbar: React.FC<Props> = ({ onClick }: Props) => {
     return (
         <header className={style.Navbar}>
             <nav>
                 <ul role="navigation" id="globalnav">
                     <li>
-                        <Button type='button' style={style.ButtonNavLogout}>
+                        <Button type='button' onClick={onClick} style={style.ButtonNavLogout}>
                             <div></div>
                             <div></div>
                             <div></div>

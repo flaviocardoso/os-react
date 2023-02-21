@@ -4,7 +4,7 @@ interface Props {
     children: React.ReactNode,
     style: string,
     type?: "button" | "submit" | "reset" | undefined,
-    onClick?: () => void
+    onClick?: (() => void) | ((event: any) => void )
 }
 
 const Button: React.FC<Props> = ({ onClick, type, style, children}: Props) => {
