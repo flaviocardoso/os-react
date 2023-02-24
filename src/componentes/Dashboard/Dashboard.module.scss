@@ -1,4 +1,4 @@
-@import 'variaveis';
+@import '../../variaveis';
 
 .DashboardStyle {
 	min-height: 100%;
@@ -11,9 +11,82 @@
     main {
         display: grid;
         justify-content: center;
-        padding: 1rem;
+        padding: 0 5.5vw;
+        article {
+            overflow-x: auto;
+            header {
+                margin: 1rem 0;
+                text-align: center;
+            }
+            table {
+                overflow-x: scroll;
+                padding: 1rem;
+                background-color: aqua;
+                border-radius: 10px;
+                th, td {
+                    padding: .4rem;
+                }
+            }
+        }
     }
     footer {
         padding: 1rem;
+    }
+}
+
+#content {
+    margin-bottom: 1rem;
+    overflow-x: auto;
+}
+
+@media screen and (min-width:481px) {}
+
+@media screen and (min-width:641px) {}
+
+@media screen and (min-width:961px) {
+    .DashboardStyle {
+        transition: transform .3s cubic-bezier(0, .52, 0, 1);
+    }
+    .hide {
+        transform: translate3d(0vw, 0, 0);
+    }
+    .show {
+        transform: translate3d($tamanho-961, 0, 0);
+    }
+    ::-webkit-scrollbar {
+        height: 0;
+        width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+        border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+        border-radius: 6px;
+    }
+}
+
+@media screen and (min-width:1025px) {
+    .DashboardStyle {
+        transition: transform .3s cubic-bezier(0, .52, 0, 1);
+    }
+    .hide {
+        transform: translate3d(0vw, 0, 0);
+    }
+    .show {
+        transform: translate3d($tamanho-1025, 0, 0);
+    }
+    ::-webkit-scrollbar {
+        height: 0;
+        width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+        border-radius: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+        -webkit-box-shadow: inset 0 0 4px rgba(0,0,0,0.3);
+        border-radius: 6px;
     }
 }

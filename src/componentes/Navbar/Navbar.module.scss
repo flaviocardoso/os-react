@@ -1,4 +1,4 @@
-@import 'variaveis';
+@import '../../variaveis';
 
 .Navbar {
     background-color: $navbar-cor-de-fundo;
@@ -18,33 +18,6 @@
             }
             li {
                 padding: 5px;
-                button {
-                    margin: 0;
-                    padding: 4px;
-                    height: 33px;
-                    div {
-                        width: 30px;
-                        height: 2px;
-                        justify-self: center;
-                        background-color: #1a1f20;
-                        margin: 5px 0;
-                    }
-                }
-            }
-        }
-        button {
-            margin: 5px;
-            padding: 7px;
-            align-self: center;
-            color: $navbarlogout-cor;
-            background-color: $navbarlogout-cor-de-fundo;
-            border-radius: 10px;
-            box-shadow: 2px 3px 3px #0000009f;
-            cursor: pointer;
-            font-size: 1rem;
-            &:active {
-                background-color:$navbar-cor-de-fundo;
-                box-shadow: 2px 2px 4px #0000009f inset;
             }
         }
     }
