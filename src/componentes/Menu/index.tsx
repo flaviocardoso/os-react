@@ -1,7 +1,6 @@
 import React from "react";
 import style from './Menu.module.scss';
 import Overlay from "componentes/Overlay";
-import ButtonHamburger from "componentes/ButtonHamburger";
 
 interface Props {
     visivel: Boolean,
@@ -17,7 +16,6 @@ const Menu: React.FC<Props> = ({ visivel, onClick }: Props) => {
     return (
         <>
         <div className={estilos.join(' ')}>
-           <ButtonHamburger onClick={onClick} />
         </div>
         <Overlay mostrar={visivel} onClick={onClick}></Overlay>
         </>

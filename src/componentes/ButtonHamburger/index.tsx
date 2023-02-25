@@ -3,15 +3,19 @@ import React from "react";
 import style from './ButtonHamburger.module.scss';
 
 interface Props {
+    hasX: Boolean,
     onClick?: (() => void) | ((e: any) => void)
 }
 
-const ButtonHamburger: React.FC<Props> = ({ onClick }: Props) => {
+const ButtonHamburger: React.FC<Props> = ({ hasX, onClick }: Props) => {
+
+    let bx = (hasX) ? 
+        <><div className={style.exis}></div><div className={style.exis}></div><div className={style.exis}></div></>: 
+        <><div className={style.ham}></div><div className={style.ham}></div><div className={style.ham}></div></>;
+
     return (
         <Button type='button' onClick={onClick} style={style.ButtonHamburger}>
-            <div></div>
-            <div></div>
-            <div></div>
+            { bx }
         </Button>
     );
 }

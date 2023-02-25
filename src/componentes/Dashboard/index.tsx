@@ -20,7 +20,7 @@ const Dashboard: React.FC = () => {
         <>
         <Menu visivel={visivel} onClick={toggleMenu} />
         <article className={estilos.join(' ')}>
-            <Navbar onClick={toggleMenu} />
+            <Navbar hasX={visivel} onClick={toggleMenu} />
             <main>
                 <article>
                     <header>DASHBOARD</header>

@@ -4,16 +4,17 @@ import ButtonHamburger from 'componentes/ButtonHamburger';
 import ButtonLogout from 'componentes/ButtonLogout';
 
 interface Props {
+    hasX: Boolean,
     onClick?: (() => void) | ((event: any) => void)
 }
 
-const Navbar: React.FC<Props> = ({ onClick }: Props) => {
+const Navbar: React.FC<Props> = ({ hasX, onClick }: Props) => {
     return (
         <header className={style.Navbar}>
             <nav>
                 <ul role="navigation" id="globalnav">
                     <li>
-                        <ButtonHamburger onClick={onClick} />
+                        <ButtonHamburger hasX={hasX} onClick={onClick} />
                     </li>
                     <li>LOGO</li>
                 </ul>

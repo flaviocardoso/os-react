@@ -14,23 +14,53 @@
 
 .ButtonHamburger {
     margin: 0;
-    padding: 4px;
-    height: 33px;
+    padding: 5px 5px 35px;
+    height: 35px;
     color: $navbarlogout-cor;
-    background-color: $navbarlogout-cor-de-fundo;
+    background-color: $navbar-cor-de-fundo;
     border-radius: 10px;
-    box-shadow: 2px 3px 3px #0000009f;
+    transition: transform 1s;
     cursor: pointer;
     font-size: 1rem;
     &:active {
         background-color:$navbar-cor-de-fundo;
-        box-shadow: 2px 2px 4px #0000009f inset;
     }
-    div {
-        width: 30px;
-        height: 2px;
-        justify-self: center;
-        background-color: #1a1f20;
-        margin: 5px 0;
+
+    .ham, .exis, &:active .exis {
+        display: block;
+        width: 35px;
+        height: 4px;
+        background-color: rgb(106, 103, 103);
+        margin: 5px;
+        transform: none;
+    }
+}
+
+@media screen and (min-width:961px) {
+    .ButtonHamburger {
+        &:active {
+            background-color:$navbar-cor-de-fundo;
+        }
+
+        .exis:last-child , &:active .ham:last-child {
+            transform: rotate(-45deg) translate(0px, 0px);
+        }
+    
+        .exis:nth-child(2) , &:active .ham:nth-child(2) {
+            display: none;
+        }
+    
+        .exis:first-child, &:active .ham:first-child {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+    
+        .ham, .exis, &:active .exis {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: rgb(106, 103, 103);
+            margin: 5px;
+            transform: none;
+        }
     }
 }
