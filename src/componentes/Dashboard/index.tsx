@@ -1,26 +1,31 @@
 import Navbar from 'componentes/Navbar';
 import Rodape from 'componentes/Footer';
-import React, { useState } from 'react';
+import React, { useLayoutEffect, useState, MouseEvent } from 'react';
 import style from './Dashboard.module.scss';
 import Menu from 'componentes/Menu';
-
+import useToggleClickEvento from 'state/hooks/useToggleClickEvento';
 const Dashboard: React.FC = () => {
-    const [visivel, setVisibel] = useState(false);
-    const toggleMenu = (e: any) => {
-        setVisibel(!visivel);
-        e.stopPropagation();
-    }
+    const [toggle, setToggle] = useState(false)
+    const toggleClickEvento = useToggleClickEvento();
+
+    useLayoutEffect(() => {
+        const onClick = (e: MouseEvent) => {
+            setToggle(!toggle);
+            e.stopPropagation();
+        }
+        toggleClickEvento({ toggle, onClick });
+    }, [toggle, toggleClickEvento])
 
     const estilos = [
         style.DashboardStyle,
-        (!visivel) ? style.hide : style.show
+        (!toggle) ? style.hide : style.show
     ];
 
     return (
         <>
-        <Menu visivel={visivel} onClick={toggleMenu} />
+        <Menu />
         <article className={estilos.join(' ')}>
-            <Navbar hasX={visivel} onClick={toggleMenu} />
+            <Navbar />
             <main>
                 <article>
                     <header>DASHBOARD</header>

@@ -1,23 +1,19 @@
 import React from "react";
 import style from './Menu.module.scss';
 import Overlay from "componentes/Overlay";
+import useGetClickEvento from "state/hooks/useGetClickEvento";
 
-interface Props {
-    visivel: Boolean,
-    onClick?: (() => void) | ((e: any) => void)
-}
-
-const Menu: React.FC<Props> = ({ visivel, onClick }: Props) => {
+const Menu: React.FC = () => {
+    const { toggle } = useGetClickEvento();
     const estilos = [
         style.MenuStyle,
-        (visivel) ? style.show: style.hide
+        (toggle) ? style.show: style.hide
     ];
 
     return (
         <>
-        <div className={estilos.join(' ')}>
-        </div>
-        <Overlay mostrar={visivel} onClick={onClick}></Overlay>
+        <div className={estilos.join(' ')}></div>
+        <Overlay></Overlay>
         </>
     );
 }

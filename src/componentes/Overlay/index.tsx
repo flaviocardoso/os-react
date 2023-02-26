@@ -1,14 +1,11 @@
 import React from "react";
+import useGetClickEvento from "state/hooks/useGetClickEvento";
 import style from "./Overlay.module.scss";
 
-interface Props {
-    mostrar: Boolean,
-    onClick?: (() => void) | ((e: any) => void)
-}
-
-const Overlay: React.FC<Props> = ({ mostrar, onClick }: Props) => {
+const Overlay: React.FC = () => {
+    const { toggle, onClick } = useGetClickEvento();
     let overlay = 
-        (mostrar) ?  
+        (toggle) ?  
         <div className={style.Overlay} onClick={onClick}></div> : 
         <></>
     return (
