@@ -1,24 +1,44 @@
 @import '../../variaveis';
 
 .Navbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: calc(100vw);
+    height: 4rem;
     background-color: $navbar-cor-de-fundo;
     color: $navbar-cor;
+    transition: transform $tempo-de-animanacao-menu;
+    -webkit-transition: transform $tempo-de-animanacao-menu;
     font-weight: bold;
+    padding: 1rem;
+    z-index: 1;
     nav {
         display: flex;
         justify-content: space-between;
-        align-content: center;
+        position: relative;
+        top: -0.4rem;
         ul {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 10%;
-            li:last-child {
-                padding: 5px;
-            }
-            li {
-                padding: 5px;
-            }
         }
+    }
+}
+
+.hide {
+    transform: translateX(0vw);
+}
+
+@media screen and (min-width:961px) {
+    .show {
+        transform: translateX($tamanho-961);
+    }
+}
+
+@media screen and (min-width:1025px) {
+    .show {
+        transform: translateX($tamanho-1025);
     }
 }

@@ -1,9 +1,11 @@
 import Navbar from 'componentes/Navbar';
 import Rodape from 'componentes/Footer';
-import React, { useLayoutEffect, useState, MouseEvent } from 'react';
+import React, { useLayoutEffect, useState, MouseEvent, useEffect } from 'react';
 import style from './Dashboard.module.scss';
 import Menu from 'componentes/Menu';
 import useToggleClickEvento from 'state/hooks/useToggleClickEvento';
+import FloatButton from 'componentes/FloatButton';
+
 const Dashboard: React.FC = () => {
     const [toggle, setToggle] = useState(false)
     const toggleClickEvento = useToggleClickEvento();
@@ -24,15 +26,29 @@ const Dashboard: React.FC = () => {
     return (
         <>
         <Menu />
+        <FloatButton />
+        <Navbar />
         <article className={estilos.join(' ')}>
-            <Navbar />
             <main>
                 <article>
-                    <header>DASHBOARD</header>
+                    <header>Dashboard</header>
                     <div id={style.content}>
                         <table>
                             <thead>
                                 <tr>
+                                    <th>item1</th>
+                                    <th>item2</th>
+                                    <th>item3</th>
+                                    <th>item4</th>
+                                    <th>item5</th>
+                                    <th>item6</th>
+                                    <th>item7</th>
+                                    <th>item8</th>
+                                    <th>item9</th>
+                                    <th>item10</th>
+                                    <th>item11</th>
+                                    <th>item12</th>
+                                    <th>item13</th>
                                     <th>item1</th>
                                     <th>item2</th>
                                     <th>item3</th>
@@ -63,8 +79,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr>
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -93,8 +107,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr>
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -123,8 +135,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr>
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -153,8 +163,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr>
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -183,8 +191,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr>
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -200,6 +206,159 @@ const Dashboard: React.FC = () => {
                                     <td>info13</td>
                                 </tr>
                                 <tr>
+                                    <td>info1</td>
+                                    <td>info2</td>
+                                    <td>info3</td>
+                                    <td>info4</td>
+                                    <td>info5</td>
+                                    <td>info6</td>
+                                    <td>info7</td>
+                                    <td>info8</td>
+                                    <td>info9</td>
+                                    <td>info10</td>
+                                    <td>info11</td>
+                                    <td>info12</td>
+                                    <td>info13</td>
+                                    <td>info1</td>
+                                    <td>info2</td>
+                                    <td>info3</td>
+                                    <td>info4</td>
+                                    <td>info5</td>
+                                    <td>info6</td>
+                                    <td>info7</td>
+                                    <td>info8</td>
+                                    <td>info9</td>
+                                    <td>info10</td>
+                                    <td>info11</td>
+                                    <td>info12</td>
+                                    <td>info13</td>
+                                </tr>
+                                <tr>
+                                    <td>info1</td>
+                                    <td>info2</td>
+                                    <td>info3</td>
+                                    <td>info4</td>
+                                    <td>info5</td>
+                                    <td>info6</td>
+                                    <td>info7</td>
+                                    <td>info8</td>
+                                    <td>info9</td>
+                                    <td>info10</td>
+                                    <td>info11</td>
+                                    <td>info12</td>
+                                    <td>info13</td>
+                                    <td>info1</td>
+                                    <td>info2</td>
+                                    <td>info3</td>
+                                    <td>info4</td>
+                                    <td>info5</td>
+                                    <td>info6</td>
+                                    <td>info7</td>
+                                    <td>info8</td>
+                                    <td>info9</td>
+                                    <td>info10</td>
+                                    <td>info11</td>
+                                    <td>info12</td>
+                                    <td>info13</td>
+                                </tr>
+                                <tr>
+                                    <td>info1</td>
+                                    <td>info2</td>
+                                    <td>info3</td>
+                                    <td>info4</td>
+                                    <td>info5</td>
+                                    <td>info6</td>
+                                    <td>info7</td>
+                                    <td>info8</td>
+                                    <td>info9</td>
+                                    <td>info10</td>
+                                    <td>info11</td>
+                                    <td>info12</td>
+                                    <td>info13</td>
+                                    <td>info1</td>
+                                    <td>info2</td>
+                                    <td>info3</td>
+                                    <td>info4</td>
+                                    <td>info5</td>
+                                    <td>info6</td>
+                                    <td>info7</td>
+                                    <td>info8</td>
+                                    <td>info9</td>
+                                    <td>info10</td>
+                                    <td>info11</td>
+                                    <td>info12</td>
+                                    <td>info13</td>
+                                </tr>
+                                <tr>
+                                    <td>info1</td>
+                                    <td>info2</td>
+                                    <td>info3</td>
+                                    <td>info4</td>
+                                    <td>info5</td>
+                                    <td>info6</td>
+                                    <td>info7</td>
+                                    <td>info8</td>
+                                    <td>info9</td>
+                                    <td>info10</td>
+                                    <td>info11</td>
+                                    <td>info12</td>
+                                    <td>info13</td>
+                                    <td>info1</td>
+                                    <td>info2</td>
+                                    <td>info3</td>
+                                    <td>info4</td>
+                                    <td>info5</td>
+                                    <td>info6</td>
+                                    <td>info7</td>
+                                    <td>info8</td>
+                                    <td>info9</td>
+                                    <td>info10</td>
+                                    <td>info11</td>
+                                    <td>info12</td>
+                                    <td>info13</td>
+                                </tr>
+                                <tr>
+                                    <td>info1</td>
+                                    <td>info2</td>
+                                    <td>info3</td>
+                                    <td>info4</td>
+                                    <td>info5</td>
+                                    <td>info6</td>
+                                    <td>info7</td>
+                                    <td>info8</td>
+                                    <td>info9</td>
+                                    <td>info10</td>
+                                    <td>info11</td>
+                                    <td>info12</td>
+                                    <td>info13</td>
+                                    <td>info1</td>
+                                    <td>info2</td>
+                                    <td>info3</td>
+                                    <td>info4</td>
+                                    <td>info5</td>
+                                    <td>info6</td>
+                                    <td>info7</td>
+                                    <td>info8</td>
+                                    <td>info9</td>
+                                    <td>info10</td>
+                                    <td>info11</td>
+                                    <td>info12</td>
+                                    <td>info13</td>
+                                </tr>
+                                <tr>
+                                    <td>info1</td>
+                                    <td>info2</td>
+                                    <td>info3</td>
+                                    <td>info4</td>
+                                    <td>info5</td>
+                                    <td>info6</td>
+                                    <td>info7</td>
+                                    <td>info8</td>
+                                    <td>info9</td>
+                                    <td>info10</td>
+                                    <td>info11</td>
+                                    <td>info12</td>
+                                    <td>info13</td>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -228,83 +387,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
-                                    <td>info1</td>
-                                    <td>info2</td>
-                                    <td>info3</td>
-                                    <td>info4</td>
-                                    <td>info5</td>
-                                    <td>info6</td>
-                                    <td>info7</td>
-                                    <td>info8</td>
-                                    <td>info9</td>
-                                    <td>info10</td>
-                                    <td>info11</td>
-                                    <td>info12</td>
-                                    <td>info13</td>
-                                </tr> 
-                                <tr>
-                                    <td>info1</td>
-                                    <td>info2</td>
-                                    <td>info3</td>
-                                    <td>info4</td>
-                                    <td>info5</td>
-                                    <td>info6</td>
-                                    <td>info7</td>
-                                    <td>info8</td>
-                                    <td>info9</td>
-                                    <td>info10</td>
-                                    <td>info11</td>
-                                    <td>info12</td>
-                                    <td>info13</td>
-                                </tr> 
-                                <tr>
-                                    <td>info1</td>
-                                    <td>info2</td>
-                                    <td>info3</td>
-                                    <td>info4</td>
-                                    <td>info5</td>
-                                    <td>info6</td>
-                                    <td>info7</td>
-                                    <td>info8</td>
-                                    <td>info9</td>
-                                    <td>info10</td>
-                                    <td>info11</td>
-                                    <td>info12</td>
-                                    <td>info13</td>
-                                </tr> 
-                                <tr>
-                                    <td>info1</td>
-                                    <td>info2</td>
-                                    <td>info3</td>
-                                    <td>info4</td>
-                                    <td>info5</td>
-                                    <td>info6</td>
-                                    <td>info7</td>
-                                    <td>info8</td>
-                                    <td>info9</td>
-                                    <td>info10</td>
-                                    <td>info11</td>
-                                    <td>info12</td>
-                                    <td>info13</td>
-                                </tr> 
-                                <tr>
-                                    <td>info1</td>
-                                    <td>info2</td>
-                                    <td>info3</td>
-                                    <td>info4</td>
-                                    <td>info5</td>
-                                    <td>info6</td>
-                                    <td>info7</td>
-                                    <td>info8</td>
-                                    <td>info9</td>
-                                    <td>info10</td>
-                                    <td>info11</td>
-                                    <td>info12</td>
-                                    <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -333,8 +415,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -363,8 +443,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -393,8 +471,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -423,8 +499,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -468,8 +542,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -498,8 +570,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -528,8 +598,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -558,8 +626,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -588,8 +654,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -618,8 +682,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -648,8 +710,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -678,8 +738,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -708,8 +766,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -738,8 +794,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -768,8 +822,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -798,8 +850,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -828,8 +878,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -858,8 +906,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -888,8 +934,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -918,8 +962,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr>
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -948,8 +990,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -978,8 +1018,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1008,8 +1046,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1038,8 +1074,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1068,8 +1102,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1098,8 +1130,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1128,8 +1158,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1158,8 +1186,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1188,8 +1214,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1218,8 +1242,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1248,8 +1270,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1278,8 +1298,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1308,8 +1326,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1338,8 +1354,6 @@ const Dashboard: React.FC = () => {
                                     <td>info11</td>
                                     <td>info12</td>
                                     <td>info13</td>
-                                </tr> 
-                                <tr>
                                     <td>info1</td>
                                     <td>info2</td>
                                     <td>info3</td>
@@ -1357,7 +1371,6 @@ const Dashboard: React.FC = () => {
                             </tbody>
                         </table>
                     </div>
-                    
                 </article>
             </main>
             <Rodape />

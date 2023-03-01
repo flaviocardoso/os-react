@@ -1,0 +1,32 @@
+@import '../../variaveis';
+
+.FloatButton {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 20px;
+    background-color: $navbar-cor-de-fundo;
+    border-radius: 100%;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1;
+}
+
+.FloatButtonSeta1 {
+    background-color: #fff;
+    height: 3px;
+    width: 22px;
+    transform: rotate(45deg) translate(18px, -19px);
+}
+.FloatButtonSeta2 {
+    background-color: #fff;
+    height: 3px;
+    width: 22px;
+    transform: rotate(135deg) translate(-11px, -6px);;
+}
+.FloatButtonSeta3 {
+    background-color: #fff;
+    height: 3px;
+    width: 60px;
+    transform: rotate(0deg) translate(0px, 0px);;
+}

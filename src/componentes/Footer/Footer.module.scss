@@ -1,9 +1,11 @@
 @import '../../variaveis';
 
 .FooterStyle {
+    position: fixed;
+    bottom: 0;
     display: flex;
     justify-content: center;
-    background-color: $rodape-cor-de-fundo;
+    background-color: rgba($navbar-cor-de-fundo, .8);
     font-weight: bolder;
     color: $rodape-cor;
 }

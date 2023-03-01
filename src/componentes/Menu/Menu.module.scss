@@ -2,21 +2,22 @@
 
 .MenuStyle {
     position: fixed;
-    left: 0;
     top: 0;
+    left: 0;
     background-color: rgb(110, 158, 133);
-    transition: transform .3s cubic-bezier(0, .52, 0, 1);
+    transition: transform $tempo-de-animanacao-menu;
+    -webkit-transition: transform $tempo-de-animanacao-menu;
     width: $tamanho-menor-481;
     height: 100vh;
-    overflow-x: hidden;
-    z-index: 1000;
+    overflow-x: auto;
+    z-index: 3;
 }
 .show {
-    transform: translate3d(0vw, 0, 0);
+    transform: translateX(0vw);
 }
 
 .hide {
-    transform: translate3d(-$tamanho-menor-481, 0, 0);
+    transform: translateX(-75vw);
 }
 
 @media screen and (min-width:481px) {
@@ -24,7 +25,7 @@
         width: $tamanho-481;
     }
     .hide {
-        transform: translate3d(-$tamanho-481, 0, 0);
+        transform: translateX(-$tamanho-481);
     }
 }
 
@@ -33,7 +34,7 @@
         width: $tamanho-641;
     }
     .hide {
-        transform: translate3d(-$tamanho-641, 0, 0);
+        transform:  translateX(-$tamanho-641);
     }
 }
 
@@ -43,16 +44,16 @@
         overflow: hidden;
     }
     .hide {
-        transform: translate3d(-$tamanho-961, 0, 0);
+        transform: translateX(-$tamanho-961);
     }
 }
 
 @media screen and (min-width:1025px) {
     .MenuStyle {
-        width: $tamanho-1025;
-        overflow: hidden;
+        width: 18vw;
+        overflow-x: hidden;
     }
     .hide {
-        transform: translate3d(-$tamanho-1025, 0, 0);
+        transform: translateX(-18vw);
     }
 }
