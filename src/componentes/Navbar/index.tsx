@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './Navbar.module.scss';
 import ButtonHamburger from 'componentes/ButtonHamburger';
 import ButtonLogout from 'componentes/ButtonLogout';

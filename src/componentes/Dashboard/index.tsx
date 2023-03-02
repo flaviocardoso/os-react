@@ -1,6 +1,6 @@
 import Navbar from 'componentes/Navbar';
 import Rodape from 'componentes/Footer';
-import React, { useLayoutEffect, useState, MouseEvent, useEffect } from 'react';
+import React, { useLayoutEffect, useState, MouseEvent, useEffect, useRef } from 'react';
 import style from './Dashboard.module.scss';
 import Menu from 'componentes/Menu';
 import useToggleClickEvento from 'state/hooks/useToggleClickEvento';
@@ -9,6 +9,119 @@ import FloatButton from 'componentes/FloatButton';
 const Dashboard: React.FC = () => {
     const [toggle, setToggle] = useState(false)
     const toggleClickEvento = useToggleClickEvento();
+    const refDiv = useRef<HTMLDivElement>(null);
+    const refTable = useRef<HTMLTableElement>(null);
+    const refLeft = useRef<HTMLButtonElement>(null);
+    const refRight = useRef<HTMLButtonElement>(null);
+    let scrollingLeft: any = 0;
+
+    const scrollLeftIn = (e: MouseEvent) => {
+        e.preventDefault();
+        const div = refDiv.current;
+        const left = refLeft.current;
+        const rigth = refRight.current;
+        if (div && left && rigth) {
+            scrollingLeft = setInterval(() => {
+                console.log(div.offsetLeft - e.pageX);
+                div.scrollLeft -= 1;
+                if (div.scrollLeft === 0) {
+                    left.style.display = 'none';
+                }
+                if (div.scrollLeft > 0) {
+                    rigth.style.display = 'block';
+                }
+            }, 10 / (div.offsetLeft - e.pageX) );
+        }
+    }
+    const scrollLeftDown = (e: MouseEvent) => {
+        e.preventDefault();
+        const div = refDiv.current;
+        const left = refLeft.current;
+        const rigth = refRight.current;
+        if (div && left && rigth) {
+            div.scrollLeft -= 10;
+            if (div.scrollLeft === 0) {
+                left.style.display = 'none';
+            }
+            if (div.scrollLeft > 0) {
+                rigth.style.display = 'block';
+            }
+        }
+    }
+    const scrollLeftOut = (e: MouseEvent) => {
+        e.preventDefault();
+        clearInterval(scrollingLeft);
+    }
+    const scrollRightIn = (e: MouseEvent) => {
+        e.preventDefault();
+        const div = refDiv.current;
+        const right = refRight.current;
+        const left = refLeft.current;
+        if (div && right && left) {
+            scrollingLeft = setInterval(() => {
+                div.scrollLeft += 1;
+                console.log(div.offsetWidth + div.offsetLeft - 10 - e.pageX);
+                if (div.scrollLeft > 0) {
+                    left.style.display = 'block';
+                }
+
+                if (div.offsetWidth < (div.scrollLeft - 15)) {
+                    right.style.display = 'none';
+                }
+            }, 10 / (div.offsetWidth + div.offsetLeft - 10 - e.pageX) );
+        }
+    }
+    const scrollRightDown = (e: MouseEvent) => {
+        e.preventDefault();
+        const div = refDiv.current;
+        const left = refLeft.current;
+        const right = refRight.current;
+        if (div && right && left) {
+            div.scrollLeft += 10;
+            if (div.scrollLeft > 0) {
+                left.style.display = 'block';
+            }
+
+            if (div.offsetWidth <= (div.scrollLeft - 15)) {
+                right.style.display = 'none';
+            }
+        }
+    }
+    const scrollRightOut = (e: MouseEvent) => {
+        e.preventDefault();
+        clearInterval(scrollingLeft);
+    }
+
+    useEffect(() => {
+        const div = refDiv.current;
+        const left = refLeft.current;
+        const rigth = refRight.current;
+        if (div && left && rigth) {
+            if (div.scrollLeft === 0) {
+                left.style.display = 'none';
+            }
+            let position = 'fixed';
+            let mouseLeft = 'w-resize';
+            let mouseRight = 'e-resize';
+            let positionTop = div.offsetTop; // top
+            let positionLeft = div.offsetLeft; // left
+            let positionRight = div.offsetWidth + div.offsetLeft; // rigth
+            let positionHeight = div.offsetHeight; // height
+
+            left.style.position = position;
+            left.style.cursor = mouseLeft;
+            left.style.top = `${positionTop}px`;
+            left.style.left = `calc(${positionLeft}px - ${5}rem)`;
+            left.style.height = `${positionHeight}px`;
+            left.style.width = `${5}rem`;
+            rigth.style.position = position;
+            rigth.style.cursor = mouseRight;
+            rigth.style.top = `${positionTop}px`;
+            rigth.style.left = `${positionRight - 10}px`;
+            rigth.style.height = `${positionHeight}px`;
+            rigth.style.width = `${5}rem`;
+        }
+    })
 
     useLayoutEffect(() => {
         const onClick = (e: MouseEvent) => {
@@ -32,8 +145,18 @@ const Dashboard: React.FC = () => {
             <main>
                 <article>
                     <header>Dashboard</header>
-                    <div id={style.content}>
-                        <table>
+                    <button ref={refLeft} 
+                        onMouseEnter={scrollLeftIn} 
+                        onMouseLeave={scrollLeftOut}
+                        onMouseDown={scrollLeftDown}
+                    ></button>
+                    <button ref={refRight} 
+                        onMouseEnter={scrollRightIn} 
+                        onMouseLeave={scrollRightOut}
+                        onMouseDown={scrollRightDown}
+                    ></button>
+                    <div ref={refDiv} id={style.content}>
+                        <table ref={refTable}>
                             <thead>
                                 <tr>
                                     <th>item1</th>
