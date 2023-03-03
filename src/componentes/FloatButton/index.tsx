@@ -12,7 +12,7 @@ const FloatButton:React.FC = () => {
             setDisplay("none");
         }
     }
-    
+    // evento de escuta no scroll, visibilidade do botão de float
     useEffect(() => {
         toggle();
         document.body.addEventListener('scroll', toggle);
@@ -20,7 +20,7 @@ const FloatButton:React.FC = () => {
             document.body.removeEventListener('scroll', toggle);
         }
     });
-
+    // envia para o topo com o comportamento lento
     const moveTop = (e: MouseEvent) => {
         document.body.scrollTo({ top: 0, behavior: 'smooth' });
     }

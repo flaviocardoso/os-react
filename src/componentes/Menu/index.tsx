@@ -5,6 +5,7 @@ import useGetClickEvento from "state/hooks/useGetClickEvento";
 
 const Menu: React.FC = () => {
     const { toggle } = useGetClickEvento();
+    // altera os estilos para visibilidade do menu
     const estilos = [
         style.MenuStyle,
         (toggle) ? style.show: style.hide

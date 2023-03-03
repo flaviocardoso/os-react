@@ -5,7 +5,7 @@ import style from './ButtonHamburger.module.scss';
 
 const ButtonHamburger: React.FC = () => {
     const { toggle, onClick } = useGetClickEvento();
-
+    // altera o botão para x ou ham para o evento de clique
     let bx = (toggle) ? 
         <><div className={style.exis}></div><div className={style.exis}></div><div className={style.exis}></div></>: 
         <><div className={style.ham}></div><div className={style.ham}></div><div className={style.ham}></div></>;

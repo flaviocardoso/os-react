@@ -14,7 +14,7 @@ const Dashboard: React.FC = () => {
     const refLeft = useRef<HTMLButtonElement>(null);
     const refRight = useRef<HTMLButtonElement>(null);
     let scrollingLeft: any = 0;
-
+    // mouse enter
     const scrollLeftIn = (e: MouseEvent) => {
         e.preventDefault();
         const div = refDiv.current;
@@ -30,9 +30,10 @@ const Dashboard: React.FC = () => {
                 if (div.scrollLeft > 0) {
                     rigth.style.display = 'block';
                 }
-            }, 10 / (div.offsetLeft - e.pageX) );
+            }, 10 / (div.offsetLeft - e.pageX) ); // velocidade
         }
     }
+    // mouse down
     const scrollLeftDown = (e: MouseEvent) => {
         e.preventDefault();
         const div = refDiv.current;
@@ -48,10 +49,12 @@ const Dashboard: React.FC = () => {
             }
         }
     }
+    // mouse leave
     const scrollLeftOut = (e: MouseEvent) => {
         e.preventDefault();
         clearInterval(scrollingLeft);
     }
+    // mouse enter
     const scrollRightIn = (e: MouseEvent) => {
         e.preventDefault();
         const div = refDiv.current;
@@ -68,9 +71,10 @@ const Dashboard: React.FC = () => {
                 if (div.offsetWidth < (div.scrollLeft - 15)) {
                     right.style.display = 'none';
                 }
-            }, 10 / (div.offsetWidth + div.offsetLeft - 10 - e.pageX) );
+            }, 10 / (div.offsetWidth + div.offsetLeft - 10 - e.pageX) ); // velocidade
         }
     }
+    // mouse down
     const scrollRightDown = (e: MouseEvent) => {
         e.preventDefault();
         const div = refDiv.current;
@@ -87,11 +91,12 @@ const Dashboard: React.FC = () => {
             }
         }
     }
+    // mouse leave
     const scrollRightOut = (e: MouseEvent) => {
         e.preventDefault();
         clearInterval(scrollingLeft);
     }
-
+    // mudando o style
     useEffect(() => {
         const div = refDiv.current;
         const left = refLeft.current;
@@ -103,6 +108,7 @@ const Dashboard: React.FC = () => {
             let position = 'fixed';
             let mouseLeft = 'w-resize';
             let mouseRight = 'e-resize';
+            let tamanho = 5;
             let positionTop = div.offsetTop; // top
             let positionLeft = div.offsetLeft; // left
             let positionRight = div.offsetWidth + div.offsetLeft; // rigth
@@ -111,18 +117,18 @@ const Dashboard: React.FC = () => {
             left.style.position = position;
             left.style.cursor = mouseLeft;
             left.style.top = `${positionTop}px`;
-            left.style.left = `calc(${positionLeft}px - ${5}rem)`;
+            left.style.left = `calc(${positionLeft}px - ${tamanho}rem)`;
             left.style.height = `${positionHeight}px`;
-            left.style.width = `${5}rem`;
+            left.style.width = `${tamanho}rem`;
             rigth.style.position = position;
             rigth.style.cursor = mouseRight;
             rigth.style.top = `${positionTop}px`;
             rigth.style.left = `${positionRight - 10}px`;
             rigth.style.height = `${positionHeight}px`;
-            rigth.style.width = `${5}rem`;
+            rigth.style.width = `${tamanho}rem`;
         }
     })
-
+    // lendo o clique para mudar a visibilidade do menu
     useLayoutEffect(() => {
         const onClick = (e: MouseEvent) => {
             setToggle(!toggle);
@@ -130,7 +136,7 @@ const Dashboard: React.FC = () => {
         }
         toggleClickEvento({ toggle, onClick });
     }, [toggle, toggleClickEvento])
-
+    // estilo do alterado para visibilidade do menu
     const estilos = [
         style.DashboardStyle,
         (!toggle) ? style.hide : style.show

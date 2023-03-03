@@ -4,6 +4,7 @@ import style from "./Overlay.module.scss";
 
 const Overlay: React.FC = () => {
     const { toggle, onClick } = useGetClickEvento();
+    // altera para mostrar o overlay o não
     let overlay = 
         (toggle) ?  
         <div className={style.Overlay} onClick={onClick}></div> : 
