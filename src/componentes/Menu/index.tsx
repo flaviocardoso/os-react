@@ -1,10 +1,72 @@
-import React from "react";
+import React, { useEffect, useRef, MouseEvent } from "react";
 import style from './Menu.module.scss';
 import Overlay from "componentes/Overlay";
-import useGetClickEvento from "state/hooks/useGetClickEvento";
+import useToggleEvento from "state/hooks/useToggleEvento";
 
 const Menu: React.FC = () => {
-    const { toggle } = useGetClickEvento();
+    // const { toggle, onClick } = useGetClickEvento();
+    const [ { toggle, onClick }, ] = useToggleEvento();
+
+    const refMenu = useRef<HTMLDivElement>(null)
+    let pos = { left: 0, x: 0 }
+
+    const mouseMove = (e: any) => {
+        e = e || window.event;
+        e.preventDefault();
+        const div = refMenu.current;
+        const root = document.getElementById("root");
+        if (div && root) {
+            const dx = pos.x - e.clientX;
+            const dleft = pos.left - dx;
+            pos = {
+                left: dleft,
+                x: e.clientX
+            }
+            // diminui o menu
+            if (-div.offsetWidth/2 <= pos.left && pos.left <= 0 ) {
+                div.style.left = `${pos.left}px`;
+                div.style.opacity = `${(div.offsetWidth+2*pos.left)/div.offsetWidth}`;
+            }
+            // esconde menu
+            if (-div.offsetWidth/2 > pos.left) {
+                div.style.left = `${-div.offsetWidth}px`;
+                div.style.opacity = '1';
+                if (onClick) onClick();
+                mouseUp();
+            }
+        }
+    }
+
+    const mouseDown = (e: MouseEvent) => {
+        const div = refMenu.current;
+        if (div) {
+            pos = {
+                left: div.offsetLeft,
+                x: e.clientX
+            }
+            div.style.userSelect = 'none';
+            div.style.cursor = 'grabbing';
+            document.addEventListener('mousemove', mouseMove);
+            document.addEventListener('mouseup', mouseUp);
+        }
+    }
+
+    const mouseUp = () => {
+        // apagar estilos
+        const div = refMenu.current;
+        if (div) {
+            document.removeEventListener('mousemove', mouseMove);
+            document.removeEventListener('mouseup', mouseUp);
+            div.style.removeProperty("transform");
+            div.style.removeProperty("left");
+            div.style.removeProperty("opacity");
+            div.style.removeProperty("cursor");
+            div.style.removeProperty('user-select');
+        }
+    }
+
+    useEffect(() => {
+    })
     // altera os estilos para visibilidade do menu
     const estilos = [
         style.MenuStyle,
@@ -13,8 +75,13 @@ const Menu: React.FC = () => {
 
     return (
         <>
-        <div className={estilos.join(' ')}>
-        <table>
+        <div 
+            ref={refMenu} 
+            // onMouseMove={mouseMove}
+            onMouseDown={mouseDown}
+            // onMouseUp={mouseUp}
+            className={estilos.join(' ')}>
+        {/* <table>
                             <thead>
                                 <tr>
                                     <th>item1</th>
@@ -1350,7 +1417,7 @@ const Menu: React.FC = () => {
                                     <td>info13</td>
                                 </tr> 
                             </tbody>
-                        </table>
+                        </table> */}
         </div>
         <Overlay></Overlay>
         </>

@@ -1,9 +1,9 @@
-import React from "react";
-import useGetClickEvento from "state/hooks/useGetClickEvento";
+import useToggleEvento from "state/hooks/useToggleEvento";
 import style from "./Overlay.module.scss";
 
 const Overlay: React.FC = () => {
-    const { toggle, onClick } = useGetClickEvento();
+    const [ { toggle, onClick },  ] = useToggleEvento();
+    // const [ click, setClick ] = useClickEvento();
     // altera para mostrar o overlay o não
     let overlay = 
         (toggle) ?  

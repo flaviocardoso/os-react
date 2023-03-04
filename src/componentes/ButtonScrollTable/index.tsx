@@ -16,7 +16,6 @@ const ButtonScrollTable: React.FC<Props> = ({ refDiv }: Props) => {
         const rigth = refRight.current;
         if (div && left && rigth) {
             scrollingLeft = setInterval(() => {
-                console.log(div.offsetLeft - e.pageX);
                 div.scrollLeft -= 1;
                 if (div.scrollLeft === 0) {
                     left.style.display = 'none';
@@ -57,7 +56,6 @@ const ButtonScrollTable: React.FC<Props> = ({ refDiv }: Props) => {
         if (div && right && left) {
             scrollingLeft = setInterval(() => {
                 div.scrollLeft += 1;
-                console.log(div.offsetWidth + div.offsetLeft - 10 - e.pageX);
                 if (div.scrollLeft > 0) {
                     left.style.display = 'block';
                 }

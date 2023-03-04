@@ -1,28 +1,29 @@
 import Navbar from 'componentes/Navbar';
 import Rodape from 'componentes/Footer';
-import React, { useLayoutEffect, useState, MouseEvent, useRef } from 'react';
+import React, { useLayoutEffect, useRef, useState } from 'react';
 import style from './Dashboard.module.scss';
 import Menu from 'componentes/Menu';
-import useToggleClickEvento from 'state/hooks/useToggleClickEvento';
 import FloatButton from 'componentes/FloatButton';
 import ButtonScrollTable from 'componentes/ButtonScrollTable';
+import useToggleEvento from 'state/hooks/useToggleEvento';
 
 const Dashboard: React.FC = () => {
-    const [toggle, setToggle] = useState(false)
-    const toggleClickEvento = useToggleClickEvento();
+    const [ toggle, setToogle ] = useState(false);
+    const [ , setToggleEvento] = useToggleEvento();
+
     const refDiv = useRef<HTMLDivElement>(null);
     // lendo o clique para mudar a visibilidade do menu
+    
     useLayoutEffect(() => {
-        const onClick = (e: MouseEvent) => {
-            setToggle(!toggle);
-            e.stopPropagation();
+        const onClick = () => {
+            setToogle(!toggle);
         }
-        toggleClickEvento({ toggle, onClick });
-    }, [toggle, toggleClickEvento])
+        setToggleEvento({ toggle, onClick });
+    }, [toggle, setToggleEvento])
     // estilo do alterado para visibilidade do menu
     const estilos = [
         style.DashboardStyle,
-        (!toggle) ? style.hide : style.show
+        (toggle) ? style.show : style.hide
     ];
 
     return (

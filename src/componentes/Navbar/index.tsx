@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import style from './Navbar.module.scss';
 import ButtonHamburger from 'componentes/ButtonHamburger';
 import ButtonLogout from 'componentes/ButtonLogout';
-import useGetClickEvento from 'state/hooks/useGetClickEvento';
+import useToggleEvento from 'state/hooks/useToggleEvento';
 
 type typePosition  = 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
 
 const Navbar: React.FC = () => {
-    const { toggle } = useGetClickEvento();
+    const [{ toggle, }, ] = useToggleEvento();
     const [position, setPosition] = useState<typePosition>('relative');
     const [bodyWidth, setBodyWidth] = useState(document.body.clientWidth);
     // altera o navbar para visibilidade no meni

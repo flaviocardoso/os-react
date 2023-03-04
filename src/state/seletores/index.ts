@@ -1,10 +1,8 @@
 import { selector } from "recoil";
-import { clickState } from "state/atom";
+import { toggleState } from "state/atom";
 
-export const eventoClickState = selector({
-    key: 'eventoClickState',
-    get: ({ get }) => {
-        const { toggle, onClick } = get(clickState);
-        return { toggle, onClick };
-    }
+export const toogleEventoState = selector({
+    key: 'toogleEventoState',
+    get: ({ get }) => get(toggleState),
+    set: ({ set }, newValue) => set(toggleState, newValue)
 });
