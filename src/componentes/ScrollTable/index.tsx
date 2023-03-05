@@ -2,11 +2,10 @@ import React, { useRef, useEffect } from "react";
 import style from "./ScrollTable.module.scss";
 
 interface Props {
-    titulos: React.ReactNode,
-    conteudo: React.ReactNode,
+    children: React.ReactNode
 }
 
-const ScrollTable: React.FC<Props> = ({ titulos, conteudo }: Props) => {
+const ScrollTable: React.FC<Props> = ({ children }: Props) => {
     const refLeft = useRef<HTMLButtonElement>(null);
     const refRight = useRef<HTMLButtonElement>(null);
     const refDiv = useRef<HTMLDivElement>(null);
@@ -55,7 +54,6 @@ const ScrollTable: React.FC<Props> = ({ titulos, conteudo }: Props) => {
             speedLeft = div.offsetLeft - e.pageX;
             clearInterval(scrollingLeft);
             scrollLeftIn(e);
-            console.log(speedLeft);
             div.scrollLeft -= 10;
             if (div.scrollLeft === 0) {
                 left.style.display = 'none';
@@ -166,14 +164,7 @@ const ScrollTable: React.FC<Props> = ({ titulos, conteudo }: Props) => {
             onMouseDown={scrollRightDown}
         ></button>
         <div ref={refDiv} className={style.TabelaStyle}>
-            <table>
-                <thead>
-                    { titulos }
-                </thead>
-                <tbody>
-                    { conteudo }
-                </tbody>
-            </table>
+            { children }
         </div>
         </>
     );
