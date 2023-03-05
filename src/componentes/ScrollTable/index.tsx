@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import style from "./ScrollTable.module.scss";
 
 interface Props {
@@ -9,9 +9,11 @@ const ScrollTable: React.FC<Props> = ({ children }: Props) => {
     const refLeft = useRef<HTMLButtonElement>(null);
     const refRight = useRef<HTMLButtonElement>(null);
     const refDiv = useRef<HTMLDivElement>(null);
+    const [ speedRight, setSpeedRight] = useState(1);
+    const [ speedLeft, setSpeedLeft] = useState(1);
+    const [ scrolling, setScrolling] = useState(undefined);
     let scrollingLeft: any;
-    let speedLeft = 1;
-    let speedRight = 1;
+    let speed = 1;
 
     // mouse enter
     const scrollLeftIn = (e: any) => {
@@ -21,8 +23,8 @@ const ScrollTable: React.FC<Props> = ({ children }: Props) => {
         const left = refLeft.current;
         const rigth = refRight.current;
         if (div && left && rigth) {
+            left.style.backgroundColor = '#0000001f';
             scrollingLeft = setInterval(() => {
-                left.style.backgroundColor = '#0000001f';
                 div.scrollLeft -= 1;
                 if (div.scrollLeft === 0) {
                     left.style.display = 'none';
@@ -31,6 +33,7 @@ const ScrollTable: React.FC<Props> = ({ children }: Props) => {
                     rigth.style.display = 'block';
                 }
             }, 10 / ((speedLeft === 0) ? 1 : speedLeft)); // velocidade
+            setScrolling(scrollingLeft);
         }
     }
     // mouse leave
@@ -39,8 +42,8 @@ const ScrollTable: React.FC<Props> = ({ children }: Props) => {
         e.preventDefault();
         const left = refLeft.current;
         left?.style.removeProperty("background-color");
-        speedLeft = 1;
-        clearInterval(scrollingLeft);
+        setSpeedLeft(1);
+        clearInterval(scrolling);
     }
 
     // mouse down
@@ -51,9 +54,10 @@ const ScrollTable: React.FC<Props> = ({ children }: Props) => {
         const left = refLeft.current;
         const rigth = refRight.current;
         if (div && left && rigth) {
-            speedLeft = div.offsetLeft - e.pageX;
-            clearInterval(scrollingLeft);
+            speed += speedLeft + div.offsetLeft - e.pageX;
+            clearInterval(scrolling);
             scrollLeftIn(e);
+            setSpeedLeft(speed);
             div.scrollLeft -= 10;
             if (div.scrollLeft === 0) {
                 left.style.display = 'none';
@@ -72,8 +76,8 @@ const ScrollTable: React.FC<Props> = ({ children }: Props) => {
         const right = refRight.current;
         const left = refLeft.current;
         if (div && right && left) {
+            right.style.backgroundColor = '#0000001f';
             scrollingLeft = setInterval(() => {
-                right.style.backgroundColor = '#0000001f';
                 div.scrollLeft += 1;
                 if (div.scrollLeft > 0) {
                     left.style.display = 'block';
@@ -82,6 +86,7 @@ const ScrollTable: React.FC<Props> = ({ children }: Props) => {
                     right.style.display = 'none';
                 }
             }, 10 / ((speedRight === 0) ? 1 : speedRight)); // velocidade
+            setScrolling(scrollingLeft);
         }
     }
     // mouse leave
@@ -90,8 +95,8 @@ const ScrollTable: React.FC<Props> = ({ children }: Props) => {
         e.preventDefault();
         const right = refRight.current;
         right?.style.removeProperty("background-color");
-        speedRight = 1;
-        clearInterval(scrollingLeft);
+        setSpeedRight(1);
+        clearInterval(scrolling);
     }
     // mouse down
     const scrollRightDown = (e: any) => {
@@ -101,10 +106,10 @@ const ScrollTable: React.FC<Props> = ({ children }: Props) => {
         const left = refLeft.current;
         const right = refRight.current;
         if (div && right && left) {
-            speedRight = e.pageX - div.offsetWidth;
-            clearInterval(scrollingLeft);
+            speed += speedRight + e.pageX - (div.offsetWidth + div.offsetLeft);
+            clearInterval(scrolling);
+            setSpeedRight(speed);
             scrollRightIn(e);
-            console.log(speedRight);
             div.scrollLeft += 10;
             if (div.scrollLeft > 0) {
                 left.style.display = 'block';
@@ -130,7 +135,8 @@ const ScrollTable: React.FC<Props> = ({ children }: Props) => {
             let position = 'fixed';
             let mouseLeft = 'w-resize';
             let mouseRight = 'e-resize';
-            let tamanho = 5;
+            let tamanho = 1;
+            let borderRadious = '10px';
             let positionTop = div.offsetTop; // top
             let positionLeft = div.offsetLeft; // left
             let positionRight = div.offsetWidth + div.offsetLeft; // rigth
@@ -142,27 +148,29 @@ const ScrollTable: React.FC<Props> = ({ children }: Props) => {
             left.style.left = `calc(${positionLeft}px - ${tamanho}rem)`;
             left.style.height = `${positionHeight}px`;
             left.style.width = `${tamanho}rem`;
+            left.style.borderRadius = `${borderRadious}`;
             rigth.style.position = position;
             rigth.style.cursor = mouseRight;
             rigth.style.top = `${positionTop}px`;
             rigth.style.left = `${positionRight}px`;
             rigth.style.height = `${positionHeight}px`;
             rigth.style.width = `${tamanho}rem`;
+            rigth.style.borderRadius = `${borderRadious}`;
         }
     })
     
     return (
         <>
-        <button title='left' ref={refLeft} 
+        <button className={style.ScrollButton} title='left' ref={refLeft} 
             onMouseEnter={scrollLeftIn} 
             onMouseLeave={scrollLeftOut}
             onMouseDown={scrollLeftDown}
-        ></button>
-        <button title='right' ref={refRight} 
+        ><span></span><span></span></button>
+        <button className={style.ScrollButton} title='right' ref={refRight} 
             onMouseEnter={scrollRightIn} 
             onMouseLeave={scrollRightOut}
             onMouseDown={scrollRightDown}
-        ></button>
+        ><span></span><span></span></button>
         <div ref={refDiv} className={style.TabelaStyle}>
             { children }
         </div>
