@@ -1,0 +1,13 @@
+.TabelaStyle {
+    overflow: scroll;
+    white-space: nowrap;
+    user-select: none;
+    // transform: rotate(180deg);
+    // padding: 1rem;
+    background-color: aqua;
+    border-radius: 10px;
+    z-index: 4;
+    th, td {
+        padding: 1rem;
+    }
+}
