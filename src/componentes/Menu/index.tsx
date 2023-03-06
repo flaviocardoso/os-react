@@ -10,12 +10,65 @@ const Menu: React.FC = () => {
     const refMenu = useRef<HTMLDivElement>(null)
     let pos = { left: 0, x: 0 }
 
+    const touchStart = (e: any) => {
+        let x = e.touches[0].clientX;
+        const div = refMenu.current;
+        if (div) {
+            pos = {
+                left: div.offsetLeft,
+                x: x
+            }
+            // console.log(pos);
+            div.style.userSelect = 'none';
+            div.style.cursor = 'grabbing';
+            div.ontouchmove = touchMove;
+            div.ontouchend = touchEnd;
+        }
+    }
+
+    const touchMove = (e: any) => {
+        let x = e.touches[0].clientX;
+        const div = refMenu.current;
+        if (div) {
+            const dx = pos.x - x;
+            const dleft = pos.left - dx;
+            pos = {
+                left: dleft,
+                x: x
+            }
+            // diminui o menu
+            if (-div.offsetWidth/2 <= pos.left && pos.left <= 0 ) {
+                div.style.left = `${pos.left}px`;
+                div.style.opacity = `${(div.offsetWidth+2*pos.left)/div.offsetWidth}`;
+            }
+            // esconde menu
+            if (-div.offsetWidth/2 > pos.left) {
+                div.style.left = `${-div.offsetWidth}px`;
+                div.style.opacity = '1';
+                if (onClick) onClick();
+                touchEnd();
+            }
+        }
+    }
+
+    const touchEnd = () => {
+        const div = refMenu.current;
+        if (div) {
+            div.ontouchmove = () => {};
+            div.ontouchend = () => {};
+            div.style.removeProperty("transform");
+            div.style.removeProperty("left");
+            div.style.removeProperty("opacity");
+            div.style.removeProperty("cursor");
+            div.style.removeProperty('user-select');
+        }
+    }
+
     const mouseMove = (e: any) => {
         e = e || window.event;
         e.preventDefault();
         const div = refMenu.current;
-        const root = document.getElementById("root");
-        if (div && root) {
+        if (div) {
             const dx = pos.x - e.clientX;
             const dleft = pos.left - dx;
             pos = {
@@ -44,6 +97,7 @@ const Menu: React.FC = () => {
                 left: div.offsetLeft,
                 x: e.clientX
             }
+            // console.log(pos);
             div.style.userSelect = 'none';
             div.style.cursor = 'grabbing';
             document.addEventListener('mousemove', mouseMove);
@@ -79,6 +133,7 @@ const Menu: React.FC = () => {
             ref={refMenu} 
             // onMouseMove={mouseMove}
             onMouseDown={mouseDown}
+            onTouchStart={touchStart}
             // onMouseUp={mouseUp}
             className={estilos.join(' ')}>
         {/* <table>
