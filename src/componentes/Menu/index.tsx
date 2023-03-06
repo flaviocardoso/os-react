@@ -6,74 +6,37 @@ import useToggleEvento from "state/hooks/useToggleEvento";
 const Menu: React.FC = () => {
     // const { toggle, onClick } = useGetClickEvento();
     const [ { toggle, onClick }, ] = useToggleEvento();
+    let interval: any;
 
     const refMenu = useRef<HTMLDivElement>(null)
     let pos = { left: 0, x: 0 }
 
-    const touchStart = (e: any) => {
-        let x = e.touches[0].clientX;
+    const agatilhoStart = (e: any) => {
         const div = refMenu.current;
         if (div) {
             pos = {
                 left: div.offsetLeft,
-                x: x
+                x: e.clientX ? e.clientX : e.touches[0].clientX
             }
-            // console.log(pos);
             div.style.userSelect = 'none';
             div.style.cursor = 'grabbing';
-            div.ontouchmove = touchMove;
-            div.ontouchend = touchEnd;
+            document.ontouchmove = agatinhoMove;
+            document.ontouchend = agatilhoEnd;
+            document.onmousemove = agatinhoMove;
+            document.onmouseup = agatilhoEnd;
         }
     }
 
-    const touchMove = (e: any) => {
-        let x = e.touches[0].clientX;
-        const div = refMenu.current;
-        if (div) {
-            const dx = pos.x - x;
-            const dleft = pos.left - dx;
-            pos = {
-                left: dleft,
-                x: x
-            }
-            // diminui o menu
-            if (-div.offsetWidth/2 <= pos.left && pos.left <= 0 ) {
-                div.style.left = `${pos.left}px`;
-                div.style.opacity = `${(div.offsetWidth+2*pos.left)/div.offsetWidth}`;
-            }
-            // esconde menu
-            if (-div.offsetWidth/2 > pos.left) {
-                div.style.left = `${-div.offsetWidth}px`;
-                div.style.opacity = '1';
-                if (onClick) onClick();
-                touchEnd();
-            }
-        }
-    }
-
-    const touchEnd = () => {
-        const div = refMenu.current;
-        if (div) {
-            div.ontouchmove = () => {};
-            div.ontouchend = () => {};
-            div.style.removeProperty("transform");
-            div.style.removeProperty("left");
-            div.style.removeProperty("opacity");
-            div.style.removeProperty("cursor");
-            div.style.removeProperty('user-select');
-        }
-    }
-
-    const mouseMove = (e: any) => {
+    const agatinhoMove = (e: any) => {
         e = e || window.event;
         e.preventDefault();
         const div = refMenu.current;
         if (div) {
-            const dx = pos.x - e.clientX;
+            const dx = pos.x - (e.clientX ? e.clientX : e.touches[0].clientX);
             const dleft = pos.left - dx;
             pos = {
                 left: dleft,
-                x: e.clientX
+                x: (e.clientX ? e.clientX : e.touches[0].clientX)
             }
             // diminui o menu
             if (-div.offsetWidth/2 <= pos.left && pos.left <= 0 ) {
@@ -85,32 +48,24 @@ const Menu: React.FC = () => {
                 div.style.left = `${-div.offsetWidth}px`;
                 div.style.opacity = '1';
                 if (onClick) onClick();
-                mouseUp();
+                interval = setInterval(() => {
+                    if (!toggle) {
+                        agatilhoEnd();
+                        clearInterval(interval);
+                    }
+                },1)
             }
         }
     }
 
-    const mouseDown = (e: MouseEvent) => {
-        const div = refMenu.current;
-        if (div) {
-            pos = {
-                left: div.offsetLeft,
-                x: e.clientX
-            }
-            // console.log(pos);
-            div.style.userSelect = 'none';
-            div.style.cursor = 'grabbing';
-            document.addEventListener('mousemove', mouseMove);
-            document.addEventListener('mouseup', mouseUp);
-        }
-    }
-
-    const mouseUp = () => {
+    const agatilhoEnd = () => {
         // apagar estilos
         const div = refMenu.current;
         if (div) {
-            document.removeEventListener('mousemove', mouseMove);
-            document.removeEventListener('mouseup', mouseUp);
+            document.onmousemove = () => {};
+            document.onmouseup = () => {};
+            document.ontouchmove = () => {};
+            document.ontouchend = () => {};
             div.style.removeProperty("transform");
             div.style.removeProperty("left");
             div.style.removeProperty("opacity");
@@ -132,9 +87,10 @@ const Menu: React.FC = () => {
         <div 
             ref={refMenu} 
             // onMouseMove={mouseMove}
-            onMouseDown={mouseDown}
-            onTouchStart={touchStart}
-            // onMouseUp={mouseUp}
+            onMouseDown={agatilhoStart}
+            // onMouseUp={agatilhoEnd}
+            onTouchStart={agatilhoStart}
+            // onTouchEnd={agatilhoEnd}
             className={estilos.join(' ')}>
         {/* <table>
                             <thead>
